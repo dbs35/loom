@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Practice Commons — Draft Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F3EA;
+    --bg-elev: #FFFCF4;
+    --ink: #1E1A14;
+    --ink-soft: #4A4138;
+    --muted: #7A6F61;
+    --rule: #D9D1BF;
+    --rule-soft: #E8E1D2;
+    --accent: #7A3220;        /* deep terracotta — editorial */
+    --accent-soft: #C66B4B;
+    --tag-bg: #EFE8D6;
+    --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --body: 'Source Serif 4', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar {
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg);
+    font-family: var(--body);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .wrap {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 14px; padding-bottom: 14px;
+  }
+  .draft-mark { display: inline-flex; align-items: center; gap: 10px; }
+  .draft-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; display: inline-block; }
+  .lang-toggle { display: flex; align-items: center; gap: 12px; }
+  .lang-toggle .label { color: var(--muted); }
+  .lang-toggle .pill {
+    display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden;
+    background: var(--bg-elev);
+  }
+  .lang-toggle button {
+    background: transparent; border: 0; padding: 6px 14px;
+    font-family: var(--body); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: var(--bg-elev); }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead { padding: 64px 0 28px; text-align: center; border-bottom: 1px solid var(--rule); }
+  .masthead .eyebrow {
+    font-family: var(--body);
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 22px;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(56px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0;
+    font-variation-settings: "opsz" 144;
+  }
+  .masthead h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .masthead .deck {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 640px; margin: 22px auto 0;
+  }
+
+  /* ---------- SEARCH / CHAT ---------- */
+  .ask {
+    padding: 56px 0 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ask-label {
+    font-family: var(--body);
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted); text-align: center; margin-bottom: 22px;
+  }
+  .ask-bar {
+    max-width: 760px; margin: 0 auto;
+    background: var(--bg-elev);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 22px 28px;
+    display: flex; align-items: center; gap: 18px;
+    box-shadow: 0 1px 0 var(--rule-soft);
+  }
+  .ask-bar svg { flex-shrink: 0; color: var(--muted); }
+  .ask-bar input {
+    flex: 1; border: 0; background: transparent;
+    font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: 22px; color: var(--ink); outline: none;
+  }
+  .ask-bar input::placeholder { color: var(--muted); opacity: 0.9; }
+  .ask-bar .send {
+    background: var(--ink); color: var(--bg-elev);
+    border: 0; padding: 10px 18px; cursor: pointer;
+    font-family: var(--body); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .ask-bar .send:hover { background: var(--accent); }
+
+  .examples {
+    max-width: 760px; margin: 22px auto 0;
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  }
+  .examples .chip {
+    font-family: var(--body); font-style: italic;
+    font-size: 14px; color: var(--ink-soft);
+    padding: 7px 14px;
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .examples .chip:hover { background: var(--bg-elev); color: var(--accent); border-color: var(--accent-soft); }
+  .examples .chip-label {
+    font-style: normal;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); width: 100%; text-align: center; margin-bottom: 4px;
+  }
+
+  /* ---------- PREMISE (For all / By some) ---------- */
+  .premise { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); }
+  .premise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .premise h2 {
+    font-family: var(--body);
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 18px;
+    font-weight: 400;
+  }
+  .premise .big {
+    font-family: var(--display); font-size: 38px; line-height: 1.1;
+    font-weight: 400; letter-spacing: -0.015em;
+    margin: 0 0 16px;
+  }
+  .premise .big em { font-style: italic; color: var(--accent); }
+  .premise p { font-size: 16px; color: var(--ink-soft); margin: 0 0 12px; }
+
+  /* ---------- INSIDE THE COMMONS ---------- */
+  .inside {
+    padding: 80px 0 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 14px;
+  }
+  .section-head h2 {
+    font-family: var(--display);
+    font-size: 36px; font-weight: 400; letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .section-head .eyebrow {
+    font-family: var(--body); font-size: 12px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .inside-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--rule);
+    padding: 28px;
+    display: flex; flex-direction: column;
+  }
+  .card .numeral {
+    font-family: var(--display);
+    font-size: 14px; letter-spacing: 0.2em;
+    color: var(--accent); margin-bottom: 18px;
+    font-feature-settings: "lnum";
+  }
+  .card h3 {
+    font-family: var(--display); font-size: 26px;
+    font-weight: 500; margin: 0 0 10px; letter-spacing: -0.01em;
+  }
+  .card .sub {
+    font-family: var(--display); font-style: italic;
+    font-size: 14px; color: var(--muted); margin-bottom: 16px;
+  }
+  .card p { font-size: 14.5px; margin: 0; color: var(--ink-soft); line-height: 1.55; }
+  .card .count {
+    margin-top: 18px; padding-top: 14px;
+    border-top: 1px dotted var(--rule);
+    font-family: var(--body); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+  }
+  .card .count strong { color: var(--ink); font-weight: 500; font-family: var(--display); font-size: 13px; }
+
+  /* ---------- WHO IT'S FOR ---------- */
+  .audience { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); }
+  .audience-grid { display: grid; grid-template-columns: 320px 1fr; gap: 80px; align-items: start; }
+  .audience h2 {
+    font-family: var(--display); font-size: 40px; line-height: 1.05;
+    font-weight: 400; letter-spacing: -0.015em; margin: 0;
+  }
+  .audience h2 em { font-style: italic; color: var(--accent); }
+  .audience .intro {
+    font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: 18px; color: var(--ink-soft); margin-top: 16px;
+  }
+  .audience ul {
+    list-style: none; padding: 0; margin: 0;
+    columns: 2; column-gap: 60px;
+  }
+  .audience li {
+    break-inside: avoid;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .audience li strong {
+    font-family: var(--display); font-size: 19px; font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .audience li span {
+    font-size: 14px; color: var(--muted); font-family: var(--body); font-style: italic;
+  }
+
+  /* ---------- QUALITY ARGUMENT ---------- */
+  .quality {
+    padding: 80px 0 90px;
+    background: var(--ink); color: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+  .quality .wrap { max-width: 820px; text-align: center; }
+  .quality .eyebrow {
+    font-family: var(--body); font-size: 12px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--accent-soft); margin-bottom: 24px;
+  }
+  .quality blockquote {
+    font-family: var(--display); font-size: 36px; line-height: 1.25;
+    font-weight: 300; letter-spacing: -0.01em; margin: 0;
+    font-style: italic;
+  }
+  .quality blockquote em { font-style: normal; color: var(--accent-soft); }
+  .quality .signoff {
+    margin-top: 38px;
+    font-family: var(--body); font-size: 13px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .quality .pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px;
+    margin-top: 52px; text-align: left;
+  }
+  .quality .pillars .p-num {
+    font-family: var(--display); font-size: 12px; letter-spacing: 0.2em;
+    color: var(--accent-soft); margin-bottom: 12px;
+  }
+  .quality .pillars h4 {
+    font-family: var(--display); font-size: 19px; font-weight: 500;
+    margin: 0 0 8px; color: var(--bg);
+  }
+  .quality .pillars p { font-size: 14.5px; line-height: 1.55; color: #B5AC9D; margin: 0; }
+
+  /* ---------- COMMITMENT TO CONTRIBUTORS ---------- */
+  .commitment {
+    padding: 84px 0;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg);
+  }
+  .commitment-inner {
+    max-width: 720px; margin: 0 auto; text-align: center;
+    position: relative;
+  }
+  .commitment .eyebrow {
+    font-family: var(--body); font-size: 12px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 30px;
+  }
+  .commitment .big {
+    font-family: var(--display); font-size: 32px; line-height: 1.25;
+    font-weight: 400; letter-spacing: -0.012em; margin: 0 0 26px;
+    color: var(--ink);
+  }
+  .commitment .big em {
+    font-style: italic; color: var(--accent);
+  }
+  .commitment .elab {
+    font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin: 0 auto;
+    max-width: 580px;
+  }
+  .commitment .ornament {
+    width: 28px; height: 1px; background: var(--accent);
+    margin: 0 auto 30px;
+  }
+
+  /* ---------- CONTRIBUTE / CTA STRIP ---------- */
+  .cta { padding: 60px 0; border-bottom: 1px solid var(--rule); }
+  .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .cta h3 {
+    font-family: var(--display); font-size: 30px; font-weight: 400;
+    letter-spacing: -0.01em; margin: 0 0 10px;
+  }
+  .cta p { color: var(--ink-soft); margin: 0; font-size: 15px; }
+  .cta-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    font-family: var(--body); font-size: 13px; letter-spacing: 0.16em;
+    text-transform: uppercase; padding: 14px 22px;
+    border: 1px solid var(--ink); color: var(--ink); background: transparent;
+    cursor: pointer; text-decoration: none;
+  }
+  .btn:hover { background: var(--ink); color: var(--bg-elev); }
+  .btn.primary { background: var(--ink); color: var(--bg-elev); }
+  .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 40px 0 60px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  footer .small { font-family: var(--body); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 24px; }
+    .premise-grid, .audience-grid, .cta-grid { grid-template-columns: 1fr; gap: 32px; }
+    .inside-grid { grid-template-columns: 1fr 1fr; }
+    .quality .pillars { grid-template-columns: 1fr; }
+    .quality blockquote { font-size: 26px; }
+    .audience ul { columns: 1; }
+    .ask-bar { flex-direction: column; align-items: stretch; }
+    .ask-bar input { font-size: 18px; }
+  }
+  @media (max-width: 560px) {
+    .inside-grid { grid-template-columns: 1fr; }
+    .masthead h1 { font-size: 48px; }
+    .section-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="draft-mark">
+      <span class="draft-dot"></span>
+      <span>Draft preview · Illustrative content</span>
+    </div>
+    <div class="lang-toggle">
+      <span class="label">Language</span>
+      <div class="pill" role="group" aria-label="Language preference">
+        <button class="active" data-lang="person-first">Person-first</button>
+        <button data-lang="identity-first">Identity-first</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">A knowledge commons for the autism community</div>
+    <h1>Practice <em>Commons</em></h1>
+    <p class="deck">What clinicians know about programs, specialists, papers, and camps &mdash; written down once, by the people who do the work, for everyone who needs it.</p>
+  </div>
+</header>
+
+<!-- ASK BAR -->
+<section class="ask">
+  <div class="wrap">
+    <div class="ask-label">Ask the commons</div>
+    <div class="ask-bar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="text" placeholder="What are you looking for?" aria-label="Ask the commons" />
+      <button class="send">Ask</button>
+    </div>
+    <div class="examples">
+      <span class="chip-label">For example</span>
+      <span class="chip">Social skills programs for a 14-year-old, high-masking girl</span>
+      <span class="chip">Who in NYC evaluates adolescents for late-diagnosed autism?</span>
+      <span class="chip">I&rsquo;m a preschool director &mdash; what should I do when I see signs?</span>
+      <span class="chip">Sleepaway camps for autistic teens, summer 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- PREMISE -->
+<section class="premise">
+  <div class="wrap">
+    <div class="premise-grid">
+      <div>
+        <h2>For all stakeholders</h2>
+        <p class="big">Parents, pediatricians, school directors, clinicians, self-advocates &mdash; <em>anyone</em> can read.</p>
+        <p>Most useful information about programs, providers, and what actually helps lives in clinicians&rsquo; heads and decays in inboxes. This site exists so it doesn&rsquo;t have to.</p>
+      </div>
+      <div>
+        <h2>By a small group of practitioners</h2>
+        <p class="big">Only licensed clinicians and allied practitioners <em>contribute</em>. Everyone else can read freely.</p>
+        <p>That&rsquo;s the deal: a closed door on input, an open door on output. The quality of what&rsquo;s in here is the whole point, and quality requires gatekeeping that part of it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE THE COMMONS -->
+<section class="inside">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What&rsquo;s inside</h2>
+      <span class="eyebrow">Four kinds of pages</span>
+    </div>
+    <div class="inside-grid">
+
+      <div class="card">
+        <div class="numeral">№ 01</div>
+        <h3>Programs</h3>
+        <div class="sub">Schools, IOPs, social groups, day treatment</div>
+        <p>One page per program. Who it&rsquo;s for, who it isn&rsquo;t, what&rsquo;s changed recently. Contributions noted by indication, not flat endorsements.</p>
+        <div class="count"><strong>Illustrative</strong> &middot; 142 in NY metro</div>
+      </div>
+
+      <div class="card">
+        <div class="numeral">№ 02</div>
+        <h3>Specialists</h3>
+        <div class="sub">Evaluators, therapists, SLPs, OTs, prescribers</div>
+        <p>What they actually treat, ages they see, current waitlists, where they trained, who refers to whom &mdash; sourced from public materials and practitioner notes.</p>
+        <div class="count"><strong>Illustrative</strong> &middot; 380 profiles</div>
+      </div>
+
+      <div class="card">
+        <div class="numeral">№ 03</div>
+        <h3>Papers</h3>
+        <div class="sub">Research, with community judgment attached</div>
+        <p>The citation is the easy part. What&rsquo;s rare: what practicing clinicians think of the paper, where they trust it, where they don&rsquo;t, how it changes practice.</p>
+        <div class="count"><strong>Illustrative</strong> &middot; 91 papers, 4 flagged this week</div>
+      </div>
+
+      <div class="card">
+        <div class="numeral">№ 04</div>
+        <h3>Camps</h3>
+        <div class="sub">Day and overnight, summer and year-round</div>
+        <p>Aggregated experiences from clinicians who&rsquo;ve referred. Capacity, milieu shifts, leadership changes, whether the intake matches what&rsquo;s on the brochure.</p>
+        <div class="count"><strong>Illustrative</strong> &middot; 47 camps</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="audience">
+  <div class="wrap">
+    <div class="audience-grid">
+      <div>
+        <h2>Built for the people <em>making the next move</em>.</h2>
+        <p class="intro">A parent figuring out the next step. A pediatrician who saw something in a 15-minute visit and isn&rsquo;t sure where to send the family. A preschool director seeing a child who doesn&rsquo;t quite fit. The clinician deciding which camp to recommend this summer.</p>
+      </div>
+      <ul>
+        <li>
+          <strong>Parents and caregivers</strong>
+          <span>Programs, specialists, what to ask, what worked for whom</span>
+        </li>
+        <li>
+          <strong>Self-advocates</strong>
+          <span>Adults seeking evaluation or community</span>
+        </li>
+        <li>
+          <strong>Pediatricians</strong>
+          <span>The frontline. Often the first to notice; rarely told what to do next</span>
+        </li>
+        <li>
+          <strong>School and preschool directors</strong>
+          <span>Children fall through cracks here. This is the gap</span>
+        </li>
+        <li>
+          <strong>School psychologists</strong>
+          <span>Differential, referrals, what each evaluator actually does</span>
+        </li>
+        <li>
+          <strong>Specialists across the spectrum of care</strong>
+          <span>Psychiatrists, psychologists, SLPs, OTs, ABA practitioners</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY ARGUMENT -->
+<section class="quality">
+  <div class="wrap">
+    <div class="eyebrow">Why trust what&rsquo;s in here</div>
+    <blockquote>
+      Most of the internet about autism is either marketing or argument.<br/>
+      This site is <em>neither</em>. It is what practicing clinicians actually do, written down.
+    </blockquote>
+    <div class="signoff">For all stakeholders &middot; By a small group of stakeholders</div>
+
+    <div class="pillars">
+      <div>
+        <div class="p-num">№ 01</div>
+        <h4>Vetted contributors</h4>
+        <p>Every contributor is a licensed clinician or credentialed allied practitioner. Membership is reviewed; contributions are attributed and visible.</p>
+      </div>
+      <div>
+        <div class="p-num">№ 02</div>
+        <h4>Specifics, not slogans</h4>
+        <p>Pages describe what programs and providers actually do in practice &mdash; including where the practice falls short. No advertising. No editorial pressure from the providers being described.</p>
+      </div>
+      <div>
+        <div class="p-num">№ 03</div>
+        <h4>Updated as practice changes</h4>
+        <p>When a director leaves, a methodology shifts, or a waitlist opens, the relevant page updates. Old observations stay visible with their date.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENT TO CONTRIBUTORS -->
+<section class="commitment">
+  <div class="wrap">
+    <div class="commitment-inner">
+      <div class="ornament"></div>
+      <div class="eyebrow">A standing commitment to contributors</div>
+      <p class="big">Nothing you share with the site is <em>ever</em> quoted directly &mdash; here, or anywhere else &mdash; without your explicit permission.</p>
+      <p class="elab">Contributions are synthesized into the pages above. Raw text is never reproduced. We don&rsquo;t lift quotes for press, research output, marketing, or external communications. Attribution is opt-in, per contribution. You can revise or withdraw what you&rsquo;ve shared at any time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <h3>Are you a clinician?</h3>
+        <p>If you evaluate, treat, or refer in this field, we&rsquo;d like you to contribute. Fifteen minutes once, and your knowledge stops decaying.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="#" class="btn primary">Apply to contribute</a>
+        <a href="#" class="btn">How contribution works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="small">Practice Commons &middot; Working title &middot; Draft preview</div>
+    <div class="small">A project in development &middot; Not yet operational</div>
+  </div>
+</footer>
+
+<script>
+  // Language toggle — placeholder behavior; in V1 this swaps language across the site.
+  document.querySelectorAll('.lang-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // Real implementation: trigger language swap (person-first <-> identity-first) across DOM.
+    });
+  });
+
+  // Example-chip prefill of the ask bar.
+  document.querySelectorAll('.examples .chip').forEach(chip => {
+    if (chip.classList.contains('chip-label')) return;
+    chip.addEventListener('click', () => {
+      const input = document.querySelector('.ask-bar input');
+      input.value = chip.textContent.trim();
+      input.focus();
+    });
+  });
+</script>
+
+</body>
+</html>
