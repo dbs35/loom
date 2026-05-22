@@ -1,0 +1,25 @@
+:root {
+  --bg: #F7F3EA;
+  --bg-elev: #FFFCF4;
+  --ink: #1E1A14;
+  --ink-soft: #4A4138;
+  --muted: #7A6F61;
+  --rule: #D9D1BF;
+  --rule-soft: #E8E1D2;
+  --accent: #7A3220;
+  --accent-soft: #C66B4B;
+  --tag-bg: #EFE8D6;
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+}
