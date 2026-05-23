@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 
 import "../styles/globals.css";
-import { TopBar } from "@/components/TopBar";
-import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Practice Commons",
@@ -17,11 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-bg text-ink font-body">
-        <TopBar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body className="bg-bg text-ink font-body">{children}</body>
     </html>
   );
 }
