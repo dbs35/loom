@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { getSupabase } from "@/lib/supabase";
 import type { ObjectType } from "@/lib/parsing";
+import { SeedButton } from "./SeedButton";
 
 export const dynamic = "force-dynamic";
 
@@ -59,6 +60,8 @@ export default async function AdminIndexPage() {
   for (const t of TYPE_ORDER) grouped.set(t, []);
   for (const o of objects) grouped.get(o.type)?.push(o);
 
+  const corpusEmpty = objects.length === 0;
+
   return (
     <div>
       <div className="text-[11px] tracking-[0.22em] uppercase text-muted font-body mb-3">
@@ -67,6 +70,8 @@ export default async function AdminIndexPage() {
       <h1 className="font-display text-[36px] font-normal tracking-[-0.015em] m-0 mb-8">
         All objects, grouped by type
       </h1>
+
+      <SeedButton corpusEmpty={corpusEmpty} />
 
       {TYPE_ORDER.map((type) => {
         const rows = grouped.get(type) ?? [];
