@@ -8,7 +8,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "seed": "node --env-file-if-exists=.env --conditions=react-server --import tsx scripts/seed.ts",
-    "provision-elevenlabs": "tsx scripts/provision-elevenlabs-agents.ts"
+    "provision-elevenlabs": "node --env-file-if-exists=.env --conditions=react-server --import tsx scripts/provision-elevenlabs-agents.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
