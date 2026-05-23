@@ -1,0 +1,12 @@
+{
+  "canonical_name": "Dr. James Park, MD",
+  "aliases": ["James Park", "Dr. Park", "J. Park MD"],
+  "frontmatter": {
+    "region": "Park Slope, Brooklyn",
+    "credentials": "MD, Board-certified Child & Adolescent Psychiatrist",
+    "training": "Mount Sinai residency, NYU CAP fellowship",
+    "accepting_new_patients": false,
+    "age_range": "8-25",
+    "modalities": "Medication management, co-occurring anxiety/ADHD, second opinions"
+  }
+}

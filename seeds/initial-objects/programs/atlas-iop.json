@@ -1,0 +1,10 @@
+{
+  "canonical_name": "The Atlas IOP Program",
+  "aliases": ["Atlas IOP", "Atlas Intensive Outpatient", "Atlas"],
+  "frontmatter": {
+    "region": "Queens, NYC",
+    "age_range": "13-25",
+    "modality": "Intensive outpatient, 3 afternoons/week, group + individual therapy",
+    "types_served": "Teens and young adults with autism and co-occurring anxiety/depression"
+  }
+}

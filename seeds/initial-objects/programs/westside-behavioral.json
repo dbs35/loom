@@ -1,0 +1,10 @@
+{
+  "canonical_name": "Westside Behavioral Day Program",
+  "aliases": ["Westside Behavioral", "Westside Day Program", "WBDP"],
+  "frontmatter": {
+    "region": "Manhattan, NYC",
+    "age_range": "6-14",
+    "modality": "Full-day partial hospitalization, behavioral focus",
+    "types_served": "Children with autism and co-occurring behavioral needs"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "canonical_name": "Crosswind ABA Clinic",
+  "aliases": ["Crosswind", "Crosswind ABA", "Crosswind Clinic"],
+  "frontmatter": {
+    "region": "Manhattan, NYC",
+    "age_range": "2-12",
+    "modality": "Clinic-based ABA, 15-30 hours/week, parent training integrated",
+    "types_served": "Newly diagnosed children, mostly preschool and early elementary"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "canonical_name": "Greenfield Family Services",
+  "aliases": ["Greenfield", "Greenfield Family", "GFS"],
+  "frontmatter": {
+    "region": "Long Island, NY",
+    "age_range": "0-21",
+    "modality": "Community-based wraparound services, home visits, sibling groups",
+    "types_served": "Families navigating new autism diagnoses or service transitions"
+  }
+}
