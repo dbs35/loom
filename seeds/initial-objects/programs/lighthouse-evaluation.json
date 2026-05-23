@@ -1,0 +1,10 @@
+{
+  "canonical_name": "Lighthouse Center for Autism Evaluation",
+  "aliases": ["Lighthouse", "Lighthouse Center", "Lighthouse Evaluation"],
+  "frontmatter": {
+    "region": "Westchester County, NY",
+    "age_range": "2-25",
+    "modality": "Comprehensive diagnostic evaluation, ADOS-2 + clinical interview",
+    "types_served": "Children, adolescents, and young adults seeking diagnostic clarity"
+  }
+}

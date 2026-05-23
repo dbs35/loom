@@ -1,0 +1,10 @@
+{
+  "canonical_name": "Hudson Therapy Placement",
+  "aliases": ["Hudson Placement", "HTP", "Hudson Referral"],
+  "frontmatter": {
+    "region": "NYC metro (NYC, Westchester, NJ)",
+    "age_range": "All ages",
+    "modality": "Referral and placement service for ABA, OT, SLP, mental health",
+    "types_served": "Families looking for vetted providers; takes intake calls and matches"
+  }
+}

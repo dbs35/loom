@@ -1,0 +1,12 @@
+{
+  "canonical_name": "Dr. Elena Martinez, PsyD",
+  "aliases": ["Elena Martinez", "Dr. Martinez", "E. Martinez PsyD"],
+  "frontmatter": {
+    "region": "Upper West Side, Manhattan",
+    "credentials": "PsyD, NY License #019847",
+    "training": "Columbia Teachers College; ADOS-2 certified",
+    "accepting_new_patients": true,
+    "age_range": "6-18",
+    "modalities": "Diagnostic evaluation, parent consultation, school advocacy"
+  }
+}
