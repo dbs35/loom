@@ -1,4 +1,5 @@
 import { ChatBar } from "./ChatBar";
+import { ExampleQuestions } from "./ExampleQuestions";
 
 const EXAMPLES = [
   "Social skills programs for a 14-year-old, high-masking girl",
@@ -31,20 +32,7 @@ export function Hero() {
             Ask the commons
           </div>
           <ChatBar />
-          <div className="max-w-[760px] mx-auto mt-[22px] flex flex-wrap gap-[10px] justify-center">
-            <span className="w-full text-center text-[11px] tracking-[0.2em] uppercase text-muted font-body mb-1">
-              For example
-            </span>
-            {EXAMPLES.map((q) => (
-              <a
-                key={q}
-                href={`/q?query=${encodeURIComponent(q)}`}
-                className="font-body italic text-[14px] text-ink-soft px-[14px] py-[7px] bg-tag-bg border border-rule rounded-full hover:bg-bg-elev hover:text-accent hover:border-accent-soft plain"
-              >
-                {q}
-              </a>
-            ))}
-          </div>
+          <ExampleQuestions examples={EXAMPLES} />
         </div>
       </section>
     </>
